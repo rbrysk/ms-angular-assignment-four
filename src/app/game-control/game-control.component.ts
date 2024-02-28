@@ -13,17 +13,26 @@ export class GameControlComponent implements OnInit {
     @Output()
     gameRunning = new EventEmitter<number>();
 
+    @Output()
+    gameReset = new EventEmitter<string>();
+
     i: number = 0;
     ref: any;
     numbers: Array<number> = [];
 
     startGame() {
-        this.ref = setInterval(() => {
-            this.gameRunning.emit(this.i++);
-        }, 1000);
+      this.ref = setInterval(() => {
+          this.gameRunning.emit(this.i++);
+      }, 1000);
     }
 
     stopGame() {
         clearInterval(this.ref);
+    }
+
+    resetGame() {
+      this.stopGame();
+      this.gameReset.emit('Game stopped and reset');
+      this.i = 0; // reset the counter
     }
 }

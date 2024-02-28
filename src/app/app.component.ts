@@ -20,4 +20,10 @@ export class AppComponent {
     onPauseGame(event: any) {
         console.log('Game paused');
     }
+
+    onResetGame(event: string) {
+      console.log(event);
+      this.oddNumbers = [];
+      this.evenNumbers = [];
+    }
 }
